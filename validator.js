@@ -1,4 +1,4 @@
-var Promise = require('promise');
+var Q = require('q');
 
 module.exports = function() {
     this.validators = {};
@@ -10,18 +10,19 @@ module.exports.prototype = {
     validate: function(body, cb) {
         cb = cb || function() {};
 
-        var promise = new Promise(function (resolve, reject) {
-            this._validate(body, function(haveErrors, errors) {
-                if (haveErrors) {
-                    reject(errors);
-                } else {
-                    resolve(this.values);
-                }
-                cb(haveErrors, errors);
-            }.bind(this));
+        var deferred = Q.defer();
+
+        this._validate(body, function(haveErrors, errors) {
+            if (haveErrors) {
+                deferred.reject(errors);
+            } else {
+                deferred.resolve(this.values);
+            }
+            cb(haveErrors, errors);
         }.bind(this));
 
-        return promise;
+
+        return deferred.promise;
     },
     _validate: function(body, cb) {
         this.values = {};
