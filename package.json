@@ -1,0 +1,28 @@
+{
+  "name": "j-validator",
+  "version": "1.0.0",
+  "description": "data validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jangot/j-validator.git"
+  },
+  "keywords": [
+    "validator",
+    "data"
+  ],
+  "author": "jangot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jangot/j-validator/issues"
+  },
+  "homepage": "https://github.com/jangot/j-validator#readme",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "q": "^1.4.1",
+    "striptags": "^2.0.3"
+  }
+}
