@@ -4,11 +4,14 @@ module.exports = function() {
     this.validators = {};
     this.filters = {};
     this.values = {};
-}
+    this.body = null;
+};
 
 module.exports.prototype = {
     validate: function(body, cb) {
         cb = cb || function() {};
+
+        this.body = body;
 
         var deferred = Q.defer();
 
@@ -69,13 +72,14 @@ module.exports.prototype = {
     },
 
     _filterField: function(filters, initialValue, cb) {
+        var self = this;
         var index = -1;
         function next(value) {
             index++;
             if (filters.length === index) {
                 cb(value);
             } else {
-                filters[index](value, next);
+                filters[index](value, next, self.body);
             }
         }
 
