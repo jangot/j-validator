@@ -97,7 +97,7 @@ module.exports.prototype = {
             stopFlag = true;
             stopCb(!!message, message);
         }
-
+        var self = this;
         function next() {
             if (stopFlag) {
                 return;
@@ -107,7 +107,7 @@ module.exports.prototype = {
             if (index === validators.length) {
                 stopCb(null);
             } else {
-                validators[index](value, next, stop)
+                validators[index].apply(self, [value, next, stop]);
             }
         }
         next();
