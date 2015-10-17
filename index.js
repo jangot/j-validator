@@ -14,5 +14,6 @@ module.exports.stripTags = require('./filters/stripTags');
 module.exports.md5 = require('./filters/md5');
 module.exports.number = require('./filters/number');
 module.exports.toLowerCase = require('./filters/toLowerCase');
+module.exports.removeWhiteSpace = require('./filters/removeWhiteSpace');
 module.exports.split = require('./filters/split');
 module.exports.setIfNothing = require('./filters/setIfNothing');
